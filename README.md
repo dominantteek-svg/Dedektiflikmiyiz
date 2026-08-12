@@ -1,0 +1,2 @@
+# Dedektiflikmiyiz
+Dedektiflik oyunu
