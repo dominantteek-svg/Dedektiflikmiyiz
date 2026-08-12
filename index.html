@@ -462,7 +462,9 @@
     position:absolute; transform:translate(-50%,-50%);
     display:flex; flex-direction:column; align-items:center; gap:5px;
     width:max-content; max-width:120px;
+    pointer-events:none;            /* wrapper must not swallow neighbouring clicks */
   }
+  .hotspot-wrap .hotspot{pointer-events:auto;}
   .hotspot{
     width:36px; height:36px; border-radius:50%;
     background:rgba(195,31,46,0.18); border:1.5px solid var(--red-bright);
@@ -1158,6 +1160,85 @@
     .ch-foot{margin-top:8px; font-size:8px;}
     .ch-badge{font-size:7.5px; padding:2px 6px;}
   }
+
+  /* ---- logic grid ---- */
+  .grid-wrap{display:flex; flex-direction:column; align-items:center; gap:12px;}
+  .lgrid{border-collapse:collapse; width:100%;}
+  .lgrid th{font-family:var(--font-mono); font-size:9.5px; color:var(--white-dim); padding:6px 4px;
+    letter-spacing:0.05em; font-weight:400; text-align:center;}
+  .lgrid tbody th{text-align:left; color:var(--white); font-size:11px; white-space:nowrap; padding-right:8px;}
+  .gcell{width:100%; aspect-ratio:1; min-height:34px; background:rgba(0,0,0,0.3);
+    border:1px solid var(--line); border-radius:2px; color:var(--red-bright);
+    font-family:var(--font-mono); font-size:16px;}
+  .gcell:hover{border-color:var(--blue-bright); background:rgba(28,79,176,0.12);}
+  .gcell.on{background:rgba(234,52,70,0.18); border-color:var(--red-bright);}
+  .grid-rules{font-family:var(--font-mono); font-size:10.5px; color:var(--white-dim);
+    line-height:1.8; margin-top:10px; width:100%;}
+
+  /* ---- timeline ---- */
+  .tl-wrap{display:flex; flex-direction:column; gap:8px;}
+  .tl-row{display:flex; align-items:center; gap:10px;}
+  .tl-time{font-family:var(--font-mono); font-size:13px; color:var(--red-bright);
+    min-width:52px; letter-spacing:0.06em;}
+  .tl-sel{flex:1; background:var(--panel-alt); border:1px solid var(--line); border-radius:var(--r-sm);
+    color:var(--white); font-family:var(--font-body); font-size:13.5px; padding:9px 10px;}
+  .tl-sel:focus{outline:none; border-color:var(--blue-bright);}
+
+  /* ---- contradiction ---- */
+  .contra-list{display:flex; flex-direction:column; gap:7px;}
+  .contra{display:flex; flex-direction:column; gap:3px; text-align:left; padding:9px 11px;
+    background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:var(--r-sm);
+    color:var(--white); transition:all 0.15s;}
+  .contra:hover{border-color:var(--blue-bright);}
+  .contra.on{border-color:var(--red-bright); background:rgba(234,52,70,0.14);}
+  .contra-who{font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--blue-bright);}
+  .contra.on .contra-who{color:var(--red-bright);}
+  .contra-txt{font-size:13px; line-height:1.5; font-style:italic;}
+  .contra-note{font-family:var(--font-mono); font-size:10.5px; color:var(--white-dim);
+    text-align:center; margin-top:10px;}
+
+  /* ---- cipher wheel ---- */
+  .wheel-wrap{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .wheel-cipher, .wheel-out{display:flex; gap:5px; flex-wrap:wrap; justify-content:center;}
+  .wheel-cipher span{width:30px; height:38px; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.35); border:1px solid var(--line); border-radius:2px;
+    font-family:var(--font-mono); font-size:17px; color:var(--white-dim);}
+  .wheel-out span{width:30px; height:38px; display:flex; align-items:center; justify-content:center;
+    background:rgba(234,52,70,0.12); border:1px solid var(--red); border-radius:2px;
+    font-family:var(--font-mono); font-size:17px; color:var(--white);}
+  .wheel-arrow{font-family:var(--font-mono); font-size:10.5px; color:var(--white-dim); letter-spacing:0.08em;}
+  .wheel-arrow b{color:var(--blue-bright); font-size:14px;}
+  .wheel-ctl{display:flex; align-items:center; gap:12px;}
+  .wheel-dial{width:56px; height:44px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#1a2029,#0c1119); border:2px solid #59677a; border-radius:4px;
+    font-family:var(--font-mono); font-size:20px; color:var(--white);
+    box-shadow:inset 0 3px 10px rgba(0,0,0,0.7);}
+
+  /* ---- route map ---- */
+  .route-map{position:relative; width:100%; aspect-ratio:16/10; border-radius:var(--r-md);
+    background:radial-gradient(ellipse at 50% 60%, #1a2418, #0a0d09 78%);
+    border:1px solid var(--line); overflow:hidden;}
+  .route-svg{position:absolute; inset:0; width:100%; height:100%;}
+  .rnode{position:absolute; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+    background:rgba(0,0,0,0.5); border:2px solid var(--blue-bright); color:var(--white);
+    font-family:var(--font-mono); font-size:13px; display:flex; align-items:center; justify-content:center;}
+  .rnode span{position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    font-size:8.5px; white-space:nowrap; color:var(--white-dim); font-family:var(--font-mono);}
+  .rnode:hover{border-color:var(--white);}
+  .rnode.on{background:var(--red-deep); border-color:var(--red-bright);}
+
+  @media (max-height:560px) and (orientation:landscape){
+    .gcell{min-height:26px; font-size:13px;}
+    .lgrid tbody th{font-size:9.5px;} .lgrid th{font-size:8px;}
+    .grid-rules{font-size:9px; line-height:1.6;}
+    .tl-sel{font-size:11.5px; padding:6px 8px;} .tl-time{font-size:11px; min-width:44px;}
+    .contra-txt{font-size:11px;} .contra-who{font-size:8.5px;}
+    .wheel-cipher span,.wheel-out span{width:24px; height:30px; font-size:14px;}
+    .wheel-dial{width:46px; height:36px; font-size:17px;}
+    .route-map{aspect-ratio:16/8;}
+    .rnode{width:28px; height:28px; font-size:11px;}
+  }
 </style>
 </head>
 <body>
@@ -1221,7 +1302,7 @@
         <div class="ch-info">
           <h3>Kızılkaya Konağı Cinayeti</h3>
           <p>Fırtınalı bir gece, dağın tepesinde kapalı bir konak ve altı şüpheli. Selim Karahan kütüphanesinde ölü bulundu.</p>
-          <div class="ch-meta"><span>12 Oda</span><span>18 Bulmaca</span><span>6 Şüpheli</span></div>
+          <div class="ch-meta"><span>12 Oda</span><span>24 Bulmaca</span><span>6 Şüpheli</span></div>
           <div class="ch-play">▶ Soruşturmayı Başlat</div>
         </div>
       </button>
@@ -1293,7 +1374,7 @@
     <div class="topbar">
       <div class="case-name"><span>Dosya №117</span>Kızılkaya Konağı — Soruşturma</div>
       <div class="topbar-right">
-        <div class="clue-counter">İpuçları: <b id="clueCount">0</b>/18</div>
+        <div class="clue-counter">İpuçları: <b id="clueCount">0</b>/24</div>
         <div class="clue-counter">Puan: <b id="scoreDisplay">0</b></div>
         <button class="btn ghost small" id="soundBtn" title="Sesi aç/kapat">🔊 SES</button>
         <button class="btn small" id="accuseBtn" disabled>İtham Et</button>
@@ -1507,6 +1588,18 @@
 
     mutfak_tepsi:{room:'mutfak', title:'Kullanılmış Servis Tepsisi', label:'tepsi', tag:'Eldiven parçası', analyzable:true,
       text:"Kullanılmış tepside tek bir bardak halkası var — yani tek bardak taşınmış. Köşeye sıkışmış küçük bir eldiven parçası duruyor; rengi mutfaktaki beyaz eldivenlere benzemiyor."},
+    hol_saat:{room:'hol', title:'Durmuş Büyük Saat', label:'sarkaçlı saat', tag:'Donmuş an', analyzable:true,
+      text:"Sarkaçlı saat durmuş. Kurgu anahtarı hâlâ dolu — yani mekanik arıza değil, sarkaç elle tutulmuş. Camında yağlı bir parmak bulaşığı var."},
+    hol_defter:{room:'hol', title:'Ziyaretçi Defteri', label:'ziyaretçi defteri', tag:'Silinmiş kayıt',
+      text:"Defterin son sayfası koparılmış. Altındaki boş sayfada kalem baskısı kalmış: bir isim ve bir saat okunabiliyor gibi ama mürekkep yok, sadece iz var."},
+    salon_kul:{room:'salon', title:'Ocaktaki Kağıt Külü', label:'küçük ocak', tag:'Yakılan belge', analyzable:true,
+      text:"Küçük ocakta yeni yanmış kağıt külü var. Kenarda yanmamış bir köşe parçası duruyor; üzerinde birkaç harf ve rakam seçilebiliyor."},
+    yemek_kadeh:{room:'yemek', title:'Devrilmiş Kadeh', label:'devrilmiş kadeh', tag:'Aceleyle kalkış',
+      text:"Bir kadeh devrilmiş, şarap örtüye yayılıp kurumuş. Lekenin kenarı sert — devrildikten sonra saatlerce kimse dokunmamış. Yanındaki sandalye masadan geriye itilmiş."},
+    cati_sandik:{room:'cati', title:'Açılmış Sandık', label:'eski sandık', tag:'Aranmış evrak', analyzable:true,
+      text:"Tozla kaplı sandıklardan birinin kilidi yeni açılmış. İçindeki eski klinik evrakları karıştırılmış, bir dosya gömleği boş. Tozda temiz bir el izi var."},
+    bahce_izler:{room:'bahce', title:'Bahçedeki Ayak İzleri', label:'çamurlu izler', tag:'Rota',
+      text:"Çamurda bir dizi ayak izi. İzler tek yönlü: bir noktadan başlayıp konağa doğru gidiyor. Aynı ayakkabının izi, adım aralığı giderek açılıyor — bu kişi koşmaya başlamış."},
     mahzen_kadeh:{room:'mahzen', title:'Mahzendeki İki Kadeh', label:'fıçı üstündeki kadehler', tag:'Alibi kanıtı', analyzable:true,
       text:"Fıçının üstünde iki kullanılmış kadeh duruyor; ikisinin de dibinde şarap kalıntısı var. Raftaki tozda iki şişelik boşluk açılmış. Gece burada gerçekten iki kişinin oturduğu belli — Kerem ile Rüstem'in anlattığı doğru görünüyor."},
     mahzen_kilit:{room:'mahzen', title:'Zorlanmış Asma Kilit', label:'mahzen kapısı kilidi', tag:'Zorlanmış kilit',
@@ -1533,6 +1626,9 @@
     sera_sise:{title:'Laboratuvar Raporu — Şişe', body:"Şişe üzerindeki parmak izleri, klinik kayıtlarındaki Dr. Naz Ilgaz örnekleriyle birebir örtüşüyor. Şişe tartışmasız ona ait.", suspect:'naz', confidence:97},
     mahzen_kadeh:{title:'Laboratuvar Raporu — Kadehler', body:"İki kadehteki izler Kerem Karahan ve kahya Rüstem'e ait. Üçüncü bir kişiye ait iz yok — ikisinin de gece mahzende olduğu doğrulanıyor.", suspect:'kerem', confidence:91},
     misafir_canta:{title:'Laboratuvar Raporu — Çanta', body:"Çantanın kilidinde ve boş ampul yuvasında yalnızca Dr. Naz Ilgaz'ın izleri var. Ampulü çantadan başka kimse çıkarmamış.", suspect:'naz', confidence:96},
+    hol_saat:{title:'Laboratuvar Raporu — Saat Camı', body:"Saat camındaki yağlı parmak izi kadın eline ait, sağ baş parmak. Klinik kayıtlarındaki örnekle eşleşiyor: Dr. Naz Ilgaz.", suspect:'naz', confidence:89},
+    salon_kul:{title:'Laboratuvar Raporu — Kül', body:"Yanmış kağıdın lif yapısı, çatı katındaki klinik evraklarıyla aynı partiden. Yakılan belge o sandıktan alınmış.", suspect:'naz', confidence:84},
+    cati_sandik:{title:'Laboratuvar Raporu — Sandık', body:"Sandığın kilidinde ve tozdaki el izinde tek bir kişinin izleri var: Dr. Naz Ilgaz. Boş dosya gömleği 1913 tarihli tutanağa ait.", suspect:'naz', confidence:93},
     yatak_fotograf:{title:'Laboratuvar Raporu — Fotoğraf', body:"Fotoğrafın yırtık kenarlarındaki izler Dr. Naz Ilgaz'a ait. Fotoğrafı yırtan kişi fotoğraftaki kadının kendisi.", suspect:'naz', confidence:88}
   };
 
@@ -1627,23 +1723,23 @@
       ]
     },
     hol:{name:'Giriş Holü', desc:"Konağın girişi. Büyük saat durmuş, askıda ıslak bir palto asılı. Yerde merdivene doğru giden çamurlu izler var.", svg:sceneHol,
-      hotspots:[{x:84,y:42,type:'flavor',title:'Islak Palto',icon:'❦',text:"Askıdaki palto hâlâ sırılsıklam. Cepleri boş ama etek ucunda sera toprağına benzeyen bir çamur var. Bu paltoyu giyen kişi gece dışarı çıkmış."},
-                {x:13,y:32,type:'flavor',title:'Duran Büyük Saat',icon:'❦',text:"Sarkaçlı saat 02:14'te durmuş. Kurgusu bitmemiş, biri sarkacı elle durdurmuş gibi. O saatte bu holden geçen biri olmalı."},
-                {x:34,y:60,type:'flavor',title:'Ziyaretçi Defteri',icon:'❦',text:"Defterin son sayfası dikkatlice yırtılmış. Alttaki sayfada kalem izi kalmış ama okunmuyor — biri o gece kimin geldiğini gizlemek istemiş."}]},
+      hotspots:[{x:13,y:34,type:'clue',clue:'hol_saat',icon:'◆'},
+                {x:34,y:60,type:'clue',clue:'hol_defter',icon:'✎'},
+                {x:84,y:42,type:'flavor',title:'Islak Palto',icon:'❦',text:"Askıdaki palto hâlâ sırılsıklam. Cepleri boş ama etek ucunda koyu renk bir çamur var. Bahçedeki toprakla aynı renkte."}]},
     yemek:{name:'Yemek Salonu', desc:"Akşam yemeğinden kalanlar hâlâ masada. Bir tabak hiç dokunulmamış, bir kadeh devrilmiş.", svg:sceneYemek,
-      hotspots:[{x:56,y:58,type:'flavor',title:'Devrilmiş Kadeh',icon:'❦',text:"Bir kadeh devrilmiş ve şarap masa örtüsüne yayılmış. Leke kurumuş — devrildiği an ile bulunduğu an arasında saatler geçmiş."},
-                {x:50,y:59,type:'flavor',title:'Dokunulmamış Tabak',icon:'❦',text:"Ortadaki tabağa hiç dokunulmamış. Yemeğe oturan biri masadan aniden kalkmış ya da hiç oturmamış."},
+      hotspots:[{x:56,y:58,type:'clue',clue:'yemek_kadeh',icon:'◆'},
+                {x:50,y:59,type:'flavor',title:'Dokunulmamış Tabak',icon:'❦',text:"Ortadaki tabağa hiç dokunulmamış. Çatal bıçak hiç yerinden oynamamış."},
                 {x:8,y:56,type:'flavor',title:'Büfe',icon:'❦',text:"Büfenin çekmecesi aralık. İçindeki gümüş takım eksiksiz — hırsızlık amacı yok."}]},
     salon:{name:'Küçük Salon', desc:"Yarım kalmış bir iskambil oyunu, sönmek üzere olan bir ocak. Kimse oyunu bitirmemiş.", svg:sceneSalon,
       hotspots:[{x:55,y:60,type:'flavor',title:'Yarım Kalan Oyun',icon:'❦',text:"Masada dört el kağıt açılmış ama oyun bitmemiş. Fişlerin dağılımına göre oyunculardan biri büyük kaybediyormuş."},
                 {x:25,y:56,type:'flavor',title:'Şezlong',icon:'❦',text:"Yeşil kadife şezlongun minderinde taze bir çöküntü var ve üzerinde birkaç uzun saç teli kalmış."},
-                {x:85,y:56,type:'flavor',title:'Küçük Ocak',icon:'❦',text:"Ocakta yeni yanmış kağıt külü var. Kenarda yarım santimlik, yanmamış bir köşe parçası duruyor."}]},
+                {x:85,y:56,type:'clue',clue:'salon_kul',icon:'◆'}]},
     cati:{name:'Çatı Katı', desc:"Yıllardır açılmamış sandıklar, örtülerle kaplı eşyalar. Tozda taze ayak izleri var.", svg:sceneCati,
-      hotspots:[{x:36,y:60,type:'flavor',title:'Açılmış Sandık',icon:'❦',text:"Sandıklardan birinin kilidi yeni açılmış — tozda parmak izleri taze. İçindeki eski evraklar karıştırılmış."},
+      hotspots:[{x:36,y:60,type:'clue',clue:'cati_sandik',icon:'◆'},
                 {x:16,y:60,type:'flavor',title:'Örtülü Eşya',icon:'❦',text:"Örtünün altındaki eşya biri tarafından kaldırılıp geri örtülmüş; örtünün kıvrımı tozla uyuşmuyor."},
                 {x:63,y:60,type:'flavor',title:'Yağ Lambası',icon:'❦',text:"Lambanın yağı yakın zamanda tüketilmiş ve fitili kısa. Biri burada uzun süre, tek başına bir şey aramış."}]},
     bahce:{name:'Bahçe', desc:"Fırtına dinmiyor. Seradan konağa doğru giden taze çamurlu ayak izleri var.", svg:sceneBahce,
-      hotspots:[{x:44,y:74,type:'flavor',title:'Çamurlu İzler',icon:'❦',text:"İzler seradan konağa doğru gidiyor, tersi yönde iz yok. Yani o kişi seraya başka bir yoldan girmiş, buradan çıkmış."},
+      hotspots:[{x:44,y:74,type:'clue',clue:'bahce_izler',icon:'◇'},
                 {x:73,y:60,type:'flavor',title:'Devrilmiş Sulama Kabı',icon:'❦',text:"Bank kenarında sulama kabı devrilmiş. Kabın altındaki toprak kuru — fırtına başlamadan önce devrilmiş."},
                 {x:88,y:47,type:'flavor',title:'Demir Kapı',icon:'❦',text:"Bahçe kapısı zincirli ve kilitli, kilit paslı. Bu gece buradan kimse girip çıkmamış — katil konağın içinden biri."}]}
   };
@@ -1792,7 +1888,7 @@
   const SUSPECT_ORDER = ['leyla','kerem','rustem','naz','hatice','bahri'];
 
   const REQUIRED_EVIDENCE = ['sera_sise','calisma_recete','calisma_kasa','misafir_bilet','misafir_canta'];
-  const MIN_CLUES_FOR_ACCUSE = 12;
+  const MIN_CLUES_FOR_ACCUSE = 16;
 
   /* ============================================================
      STATE
@@ -1821,7 +1917,8 @@
     examId:null, examFound:[], examSpotEls:[],
     puzzleId:null,
     dials:[], seqPicks:[], matchPicks:{}, matchSel:null,
-    asked:{}, talkingId:null
+    asked:{}, talkingId:null,
+    gridPick:{}, tlPick:{}, contraPick:[], wheelShift:0, routePick:[]
   };
 
   function clueCount(){ return Object.keys(state.foundClues).length; }
@@ -3393,6 +3490,89 @@
         '</svg>',
       finds:[{x:40,y:44,t:'letter',v:'L'},{x:72,y:54,t:'print'},{x:56,y:34,t:'letter',v:'S'}]
     },
+    hol_saat:{
+      label:'Sarkaçlı Saat Kadranı',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="120" y="14" width="160" height="192" rx="8" fill="#3d2a19" stroke="#0e0a06" stroke-width="3"/>'+
+        '<circle cx="200" cy="80" r="56" fill="#e8dab5" stroke="#3a2917" stroke-width="5"/>'+
+        '<circle cx="200" cy="80" r="46" fill="none" stroke="#b3a684" stroke-width="1.5"/>'+
+        '<line x1="200" y1="80" x2="200" y2="44" stroke="#2a2013" stroke-width="4"/>'+
+        '<line x1="200" y1="80" x2="224" y2="94" stroke="#2a2013" stroke-width="3"/>'+
+        '<circle cx="200" cy="80" r="4" fill="#2a2013"/>'+
+        '<rect x="182" y="146" width="36" height="52" fill="#0b0f14"/>'+
+        '<circle cx="200" cy="182" r="16" fill="#b3893f"/>'+
+        '</svg>',
+      finds:[{x:38,y:26,t:'digit',v:'0'},{x:62,y:34,t:'digit',v:'2'},{x:50,y:60,t:'print'}]
+    },
+    hol_defter:{
+      label:'Ziyaretçi Defteri',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="70" y="26" width="260" height="168" rx="4" fill="#4a3520"/>'+
+        '<rect x="82" y="36" width="236" height="148" rx="2" fill="#efe4c4"/>'+
+        '<path d="M300 36 l18 0 l-6 148 l-12 0 z" fill="#d8cba6"/>'+
+        '<path d="M298 36 q6 76 2 148" stroke="#c2b190" stroke-width="2" fill="none" stroke-dasharray="4 3"/>'+
+        '<rect x="98" y="60" width="120" height="4" fill="#a9997a"/>'+
+        '<rect x="98" y="84" width="150" height="4" fill="#a9997a"/>'+
+        '<rect x="98" y="108" width="130" height="4" fill="#a9997a"/>'+
+        '<rect x="98" y="132" width="160" height="4" fill="#c4b797" opacity="0.6"/>'+
+        '</svg>',
+      finds:[{x:34,y:40,t:'letter',v:'N'},{x:58,y:58,t:'digit',v:'2'},{x:70,y:74,t:'print'}]
+    },
+    salon_kul:{
+      label:'Yanmamış Kağıt Köşesi',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="0" y="0" width="400" height="220" fill="#120d09"/>'+
+        '<ellipse cx="200" cy="150" rx="150" ry="52" fill="#1a1410"/>'+
+        '<path d="M120 160 q80 -26 160 0 q-80 22 -160 0 z" fill="#2a231c"/>'+
+        '<path d="M158 118 l70 -8 l10 46 l-72 10 z" fill="#e0d0a6"/>'+
+        '<path d="M228 110 l10 46" stroke="#5a3418" stroke-width="9" opacity="0.7"/>'+
+        '<path d="M170 130 l40 -4" stroke="#7a6a48" stroke-width="3"/>'+
+        '<path d="M172 144 l36 -4" stroke="#7a6a48" stroke-width="3"/>'+
+        '</svg>',
+      finds:[{x:44,y:58,t:'letter',v:'K'},{x:56,y:66,t:'letter',v:'L'},{x:50,y:74,t:'print'}]
+    },
+    yemek_kadeh:{
+      label:'Devrilmiş Kadeh ve Leke',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="0" y="0" width="400" height="220" fill="#efe7d2"/>'+
+        '<path d="M120 150 q40 -34 96 -16 q52 18 22 44 q-46 22 -96 6 q-38 -14 -22 -34 z" fill="#7d2230" opacity="0.55"/>'+
+        '<path d="M140 148 q34 -24 76 -10 q40 14 16 32 q-38 16 -76 2 q-28 -10 -16 -24 z" fill="#5e1018" opacity="0.6"/>'+
+        '<g transform="rotate(74 210 100)">'+
+          '<path d="M186 60 l48 0 l-6 76 l-36 0 z" fill="#9fc4e8" opacity="0.35"/>'+
+          '<rect x="202" y="136" width="16" height="24" fill="#9fc4e8" opacity="0.35"/>'+
+          '<ellipse cx="210" cy="162" rx="24" ry="6" fill="#9fc4e8" opacity="0.35"/>'+
+        '</g>'+
+        '</svg>',
+      finds:[{x:34,y:70,t:'digit',v:'1'},{x:64,y:44,t:'print'},{x:52,y:80,t:'digit',v:'4'}]
+    },
+    cati_sandik:{
+      label:'Sandığın İçi',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="56" y="60" width="288" height="132" rx="6" fill="#33240f" stroke="#0e0a06" stroke-width="3"/>'+
+        '<path d="M56 60 q144 -44 288 0 l0 -14 q-144 -40 -288 0 z" fill="#4a3520"/>'+
+        '<rect x="72" y="78" width="256" height="98" fill="#160f06"/>'+
+        '<rect x="88" y="92" width="96" height="70" rx="2" fill="#e0cf9e" transform="rotate(-4 136 127)"/>'+
+        '<rect x="196" y="88" width="96" height="70" rx="2" fill="#d6c390" transform="rotate(5 244 123)"/>'+
+        '<rect x="150" y="104" width="100" height="66" rx="2" fill="#eee3c6" transform="rotate(-1 200 137)"/>'+
+        '<rect x="166" y="120" width="60" height="4" fill="#8a7c5c"/>'+
+        '<rect x="166" y="134" width="46" height="4" fill="#8a7c5c"/>'+
+        '</svg>',
+      finds:[{x:36,y:56,t:'letter',v:'M'},{x:62,y:52,t:'digit',v:'1'},{x:50,y:74,t:'print'}]
+    },
+    bahce_izler:{
+      label:'Bahçedeki İz Dizisi',
+      svg:'<svg class="obj" viewBox="0 0 400 220">'+
+        '<rect x="0" y="0" width="400" height="220" fill="#1b1710"/>'+
+        '<ellipse cx="200" cy="120" rx="180" ry="86" fill="#120e09"/>'+
+        '<ellipse cx="60" cy="180" rx="13" ry="20" fill="#070503" transform="rotate(-16 60 180)"/>'+
+        '<ellipse cx="116" cy="160" rx="13" ry="20" fill="#070503" transform="rotate(-14 116 160)"/>'+
+        '<ellipse cx="172" cy="140" rx="13" ry="20" fill="#070503" transform="rotate(-13 172 140)"/>'+
+        '<ellipse cx="228" cy="118" rx="13" ry="20" fill="#080604" transform="rotate(-12 228 118)"/>'+
+        '<ellipse cx="288" cy="92" rx="13" ry="20" fill="#0a0705" transform="rotate(-11 288 92)"/>'+
+        '<ellipse cx="352" cy="64" rx="13" ry="20" fill="#0c0806" transform="rotate(-10 352 64)"/>'+
+        '</svg>',
+      finds:[{x:26,y:74,t:'digit',v:'6'},{x:56,y:52,t:'digit',v:'3'},{x:76,y:34,t:'print'}]
+    },
     mahzen_kadeh:{
       label:'Mahzendeki Kadehler',
       svg:'<svg class="obj" viewBox="0 0 400 220">'+
@@ -3561,6 +3741,56 @@
       hint:'Tepside taramayla L ve S harfleri çıktı. Cerrahi eldivenlerin yapıldığı, 6 harfli malzemenin adını yazın.',
       placeholder:'Malzeme adı'
     },
+    hol_saat:{
+      type:'timeline', title:'Gecenin Zaman Çizelgesi',
+      hint:'Saat 02:00\'de durmuş. İfadeleri ve bulduğunuz kayıtları kullanarak gecenin sırasını kurun.',
+      slots:['22:00','23:30','01:00','02:00'],
+      events:['Beyefendiye ılık süt götürüldü','Mahzen kapısı kilitlendi','Mutfakta bir ışık yandı','Saat elle durduruldu'],
+      solution:{'22:00':'Beyefendiye ılık süt götürüldü','23:30':'Mahzen kapısı kilitlendi',
+                '01:00':'Mutfakta bir ışık yandı','02:00':'Saat elle durduruldu'},
+      rules:['Süt her akşam yemekten hemen sonra götürülür.','Mahzendekiler gece yarısından ÖNCE aşağıda kilitlendi.',
+             'Kahyanın güncesi mutfakta görülen ışığın saatini veriyor.','Saat, mutfaktaki ışıktan SONRA durmuş.']
+    },
+    hol_defter:{
+      type:'contradiction', title:'İfadelerdeki Çelişki',
+      hint:'Defterin son sayfası koparılmış. Aşağıdaki ifadelerden ikisi aynı anda doğru olamaz — o ikisini seçin.',
+      statements:[
+        {who:'Rüstem', text:'Fırtına başlayınca mahzene indik, sabaha kadar yukarı çıkamadık.'},
+        {who:'Dr. Naz', text:'Bütün gece misafir odamda kitap okudum, kimseyi görmedim.'},
+        {who:'Rüstem', text:'Gece mutfakta Doktor Hanım\'ı gördüm, bir şeyler hazırlıyordu.'},
+        {who:'Leyla',  text:'Odamdan hiç çıkmadım, sabaha kadar ağladım.'},
+        {who:'Kerem',  text:'Rüstem\'le mahzendeydik, kapı açılmadı.'}
+      ],
+      answer:[1,2]
+    },
+    salon_kul:{
+      type:'wheel', title:'Yanmış Kağıttaki Şifre',
+      hint:'Kağıdın yanmamış köşesinde şifreli harfler kalmış: <b>P Q N S N P</b>. Çarkı çevirerek anlamlı bir kelime çıkana kadar deneyin. (Türkçe İ harfi I olarak yazılmıştır.)',
+      cipher:'PQNSNP', plain:'KLINIK'
+    },
+    yemek_kadeh:{
+      type:'grid', title:'Kim Nerede Oturuyordu?',
+      hint:'Akşam yemeğinde kimin nerede oturduğunu belirleyin. Dokunulmamış tabak, masadan erken kalkan kişiyi ele veriyor.',
+      rows:['Selim','Leyla','Kerem','Dr. Naz'],
+      cols:['Baş köşe','Sağ yan','Sol yan','Uç'],
+      solution:{'Selim':'Baş köşe','Leyla':'Sağ yan','Dr. Naz':'Sol yan','Kerem':'Uç'},
+      rules:['Ev sahibi her zaman baş köşede oturur.','Leyla eşinin sağında oturur.',
+             'Devrilen kadeh sol yandaki misafirin önünde.','Kerem masanın en ucunda, kapıya en yakın yerde.']
+    },
+    cati_sandik:{
+      type:'match', title:'Karıştırılmış Klinik Evrakları',
+      hint:'Sandıktaki dosyaları doğru yıllarıyla eşleştirin. Bir dosya gömleği boş — hangisinin alındığını göreceksiniz.',
+      pairs:[['Klinik açılış kaydı','1911'],['Hasta ölüm tutanağı','1913'],['Ruhsat yenileme','1920']]
+    },
+    bahce_izler:{
+      type:'route', title:'İzleri Takip Et',
+      hint:'Çamurdaki izleri başlangıçtan bitişe kadar doğru sırayla takip edin. Adım aralığı, kişinin hangi yöne gittiğini gösterir.',
+      nodes:[{name:'Sera',x:12,y:62},{name:'Bahçe yolu',x:34,y:48},{name:'Bank',x:56,y:64},
+             {name:'Yan kapı',x:74,y:38},{name:'Hol',x:90,y:56}],
+      solution:[0,1,3,4],
+      rules:['İzler tek yönlü: bir yerden başlayıp konağa gidiyor.','Adım aralığı sona doğru açılıyor — kişi koşuyor.',
+             'Bank çevresinde iz yok, oraya uğramamış.','İzler yan kapıdan içeri giriyor.']
+    },
     mahzen_kadeh:{
       type:'combo', len:2, code:'21', title:'Mahzen Kanıt Kasası',
       hint:'Kadehlerin üzerinde taramayla çıkan iki rakam, mahzen kanıt kasasının kodudur.'
@@ -3701,7 +3931,8 @@
         if(state.examFound[i]) return;
         const px = sr.left + sr.width*(f.x/100);
         const py = sr.top  + sr.height*(f.y/100);
-        if(px>ar.left && px<ar.right && py>ar.top && py<ar.bottom){
+        const pad = 10;   /* small tolerance so scanning feels responsive */
+        if(px>ar.left-pad && px<ar.right+pad && py>ar.top-pad && py<ar.bottom+pad){
           state.examFound[i]=true;
           state.examSpotEls[i].classList.add('found');
           changed=true;
@@ -3712,10 +3943,19 @@
     function move(e){
       if(!dragging) return;
       const sr = stage.getBoundingClientRect();
+      const lr = lens.getBoundingClientRect();
+      /* clamp by the SCANNING WINDOW, not the whole body, so the beam
+         can reach every corner of the object (the casing may hang out) */
+      let padT=0,padB=0,padL=0,padR=0;
+      if(aperture){
+        const ar = aperture.getBoundingClientRect();
+        padT = ar.top - lr.top; padB = lr.bottom - ar.bottom;
+        padL = ar.left - lr.left; padR = lr.right - ar.right;
+      }
       let x = e.clientX - sr.left - offX;
       let y = e.clientY - sr.top  - offY;
-      x = Math.max(0, Math.min(sr.width  - lens.offsetWidth,  x));
-      y = Math.max(0, Math.min(sr.height - lens.offsetHeight, y));
+      x = Math.max(-padL, Math.min(sr.width  - lens.offsetWidth  + padR, x));
+      y = Math.max(-padT, Math.min(sr.height - lens.offsetHeight + padB, y));
       lens.style.left = (x/sr.width*100)+'%';
       lens.style.top  = (y/sr.height*100)+'%';
       check();
@@ -3754,6 +3994,11 @@
     else if(p.type==='sequence'){ state.seqPicks = []; renderSequence(); }
     else if(p.type==='text'){ renderTextPuzzle(); }
     else if(p.type==='match'){ state.matchPicks = {}; state.matchSel = null; renderMatch(); }
+    else if(p.type==='grid'){ state.gridPick = {}; renderGrid(); }
+    else if(p.type==='timeline'){ state.tlPick = {}; renderTimeline(); }
+    else if(p.type==='contradiction'){ state.contraPick = []; renderContradiction(); }
+    else if(p.type==='wheel'){ state.wheelShift = 0; renderWheel(); }
+    else if(p.type==='route'){ state.routePick = []; renderRoute(); }
     openModal('#puzzleModal');
   }
 
@@ -3869,6 +4114,180 @@
     $('#matchTry').addEventListener('click', ()=>{
       const all = p.pairs.every(pr=> state.matchPicks[pr[0]]===pr[1]);
       if(all) puzzleSolved(); else puzzleFail('✕ Eşleşmeler hatalı.');
+    });
+  }
+
+
+  /* ============================================================
+     PUZZLE ENGINE 5 — LOGIC GRID (kim / nerede)
+     Fill a grid so every row and column has exactly one mark.
+  ============================================================ */
+  function renderGrid(){
+    const p = PUZZLES[state.puzzleId];
+    if(!state.gridPick) state.gridPick = {};
+    let html = '<div class="grid-wrap"><table class="lgrid"><thead><tr><th></th>';
+    p.cols.forEach(c=> html += '<th>'+c+'</th>');
+    html += '</tr></thead><tbody>';
+    p.rows.forEach((r,ri)=>{
+      html += '<tr><th>'+r+'</th>';
+      p.cols.forEach((c,ci)=>{
+        const on = state.gridPick[r]===c;
+        html += '<td><button class="gcell'+(on?' on':'')+'" data-r="'+ri+'" data-c="'+ci+'">'+(on?'✕':'')+'</button></td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>'+
+      '<div class="grid-rules">'+p.rules.map(x=>'<div>• '+x+'</div>').join('')+'</div>'+
+      '<button class="btn small" id="gridTry">Çizelgeyi Doğrula</button></div>';
+    $('#puzzleBody').innerHTML = html;
+    $$('#puzzleBody .gcell').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const r = p.rows[+b.dataset.r], c = p.cols[+b.dataset.c];
+        if(state.gridPick[r]===c) delete state.gridPick[r];
+        else {
+          Object.keys(state.gridPick).forEach(k=>{ if(state.gridPick[k]===c) delete state.gridPick[k]; });
+          state.gridPick[r]=c;
+        }
+        Sound.click(); renderGrid();
+      });
+    });
+    $('#gridTry').addEventListener('click', ()=>{
+      const ok = p.rows.every(r => state.gridPick[r] === p.solution[r]);
+      if(ok) puzzleSolved(); else puzzleFail('✕ Çizelge kurallarla çelişiyor.');
+    });
+  }
+
+  /* ============================================================
+     PUZZLE ENGINE 6 — TIMELINE (olayları saate yerleştir)
+  ============================================================ */
+  function renderTimeline(){
+    const p = PUZZLES[state.puzzleId];
+    if(!state.tlPick) state.tlPick = {};
+    let html = '<div class="tl-wrap">';
+    p.slots.forEach(slot=>{
+      const cur = state.tlPick[slot] || '';
+      html += '<div class="tl-row"><span class="tl-time">'+slot+'</span>'+
+        '<select class="tl-sel" data-slot="'+slot+'"><option value="">— olay seçin —</option>'+
+        p.events.map(e=>'<option value="'+e+'"'+(cur===e?' selected':'')+'>'+e+'</option>').join('')+
+        '</select></div>';
+    });
+    html += '</div><div class="grid-rules">'+p.rules.map(x=>'<div>• '+x+'</div>').join('')+'</div>'+
+      '<div style="text-align:center;margin-top:12px"><button class="btn small" id="tlTry">Zaman Çizelgesini Doğrula</button></div>';
+    $('#puzzleBody').innerHTML = html;
+    $$('#puzzleBody .tl-sel').forEach(sel=>{
+      sel.addEventListener('change', ()=>{
+        const slot = sel.dataset.slot, val = sel.value;
+        Object.keys(state.tlPick).forEach(k=>{ if(state.tlPick[k]===val && k!==slot) delete state.tlPick[k]; });
+        if(val) state.tlPick[slot]=val; else delete state.tlPick[slot];
+        Sound.click(); renderTimeline();
+      });
+    });
+    $('#tlTry').addEventListener('click', ()=>{
+      const ok = p.slots.every(sl => state.tlPick[sl] === p.solution[sl]);
+      if(ok) puzzleSolved(); else puzzleFail('✕ Sıralama tanıklıklarla uyuşmuyor.');
+    });
+  }
+
+  /* ============================================================
+     PUZZLE ENGINE 7 — CONTRADICTION (yalanı yakala)
+  ============================================================ */
+  function renderContradiction(){
+    const p = PUZZLES[state.puzzleId];
+    if(!state.contraPick) state.contraPick = [];
+    let html = '<div class="contra-list">';
+    p.statements.forEach((st,i)=>{
+      const on = state.contraPick.includes(i);
+      html += '<button class="contra'+(on?' on':'')+'" data-i="'+i+'">'+
+        '<span class="contra-who">'+st.who+'</span>'+
+        '<span class="contra-txt">“'+st.text+'”</span></button>';
+    });
+    html += '</div><div class="contra-note">Birbiriyle çelişen <b>iki</b> ifadeyi seçin.</div>'+
+      '<div style="text-align:center;margin-top:10px"><button class="btn small" id="contraTry">Çelişkiyi Bildir</button></div>';
+    $('#puzzleBody').innerHTML = html;
+    $$('#puzzleBody .contra').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const i = +b.dataset.i, at = state.contraPick.indexOf(i);
+        if(at>-1) state.contraPick.splice(at,1);
+        else { if(state.contraPick.length>=2) state.contraPick.shift(); state.contraPick.push(i); }
+        Sound.click(); renderContradiction();
+      });
+    });
+    $('#contraTry').addEventListener('click', ()=>{
+      const a = state.contraPick.slice().sort((x,y)=>x-y).join(',');
+      const b = p.answer.slice().sort((x,y)=>x-y).join(',');
+      if(a===b) puzzleSolved(); else puzzleFail('✕ Bu ikisi çelişmiyor.');
+    });
+  }
+
+  /* ============================================================
+     PUZZLE ENGINE 8 — CIPHER WHEEL (şifre çarkı)
+  ============================================================ */
+  function renderWheel(){
+    const p = PUZZLES[state.puzzleId];
+    if(state.wheelShift===undefined) state.wheelShift = 0;
+    const AB='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const dec = p.cipher.split('').map(ch=>{
+      const i = AB.indexOf(ch);
+      return i<0 ? ch : AB[(i - state.wheelShift + 26) % 26];
+    }).join('');
+    $('#puzzleBody').innerHTML =
+      '<div class="wheel-wrap">'+
+        '<div class="wheel-cipher">'+p.cipher.split('').map(c=>'<span>'+c+'</span>').join('')+'</div>'+
+        '<div class="wheel-arrow">↓ çark: <b>'+state.wheelShift+'</b> kademe</div>'+
+        '<div class="wheel-out">'+dec.split('').map(c=>'<span>'+c+'</span>').join('')+'</div>'+
+        '<div class="wheel-ctl">'+
+          '<button class="dial-btn" id="wLeft">◀</button>'+
+          '<div class="wheel-dial" id="wDial">'+state.wheelShift+'</div>'+
+          '<button class="dial-btn" id="wRight">▶</button>'+
+        '</div>'+
+        '<button class="btn small" id="wheelTry">Çözümü Onayla</button>'+
+      '</div>';
+    $('#wLeft').addEventListener('click', ()=>{ state.wheelShift=(state.wheelShift+25)%26; Sound.click(); renderWheel(); });
+    $('#wRight').addEventListener('click', ()=>{ state.wheelShift=(state.wheelShift+1)%26; Sound.click(); renderWheel(); });
+    $('#wheelTry').addEventListener('click', ()=>{
+      if(dec === p.plain) puzzleSolved(); else puzzleFail('✕ Anlamlı bir kelime çıkmadı.');
+    });
+  }
+
+  /* ============================================================
+     PUZZLE ENGINE 9 — ROUTE (izleri sırayla takip et)
+  ============================================================ */
+  function renderRoute(){
+    const p = PUZZLES[state.puzzleId];
+    if(!state.routePick) state.routePick = [];
+    const nodes = p.nodes;
+    let html = '<div class="route-map" id="routeMap"><svg viewBox="0 0 320 200" class="route-svg" id="routeSvg"></svg>';
+    nodes.forEach((n,i)=>{
+      const at = state.routePick.indexOf(i);
+      html += '<button class="rnode'+(at>-1?' on':'')+'" style="left:'+n.x+'%;top:'+n.y+'%" data-i="'+i+'">'+
+        (at>-1?(at+1):'')+'<span>'+n.name+'</span></button>';
+    });
+    html += '</div><div class="grid-rules">'+p.rules.map(x=>'<div>• '+x+'</div>').join('')+'</div>'+
+      '<div style="text-align:center;margin-top:10px">'+
+      '<button class="btn ghost small" id="routeClear">Sıfırla</button> '+
+      '<button class="btn small" id="routeTry">Rotayı Doğrula</button></div>';
+    $('#puzzleBody').innerHTML = html;
+    /* draw connecting line */
+    const svg = $('#routeSvg');
+    if(svg && state.routePick.length>1){
+      let d='';
+      state.routePick.forEach((ni,k)=>{
+        const n=nodes[ni]; const x=n.x*3.2, y=n.y*2;
+        d += (k===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';
+      });
+      svg.innerHTML = '<path d="'+d+'" stroke="#ea3446" stroke-width="2.5" fill="none" stroke-dasharray="6 4" opacity="0.9"/>';
+    }
+    $$('#puzzleBody .rnode').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const i=+b.dataset.i;
+        if(state.routePick.includes(i)) return;
+        state.routePick.push(i); Sound.click(); renderRoute();
+      });
+    });
+    $('#routeClear').addEventListener('click', ()=>{ state.routePick=[]; renderRoute(); });
+    $('#routeTry').addEventListener('click', ()=>{
+      if(state.routePick.join(',')===p.solution.join(',')) puzzleSolved();
+      else puzzleFail('✕ Bu rota izlerle uyuşmuyor.');
     });
   }
 
@@ -4189,7 +4608,7 @@
     if(cc===0){
       msg = "1. Adım: Bir odaya girin ve parlayan kırmızı noktalara tıklayarak ipucu bulun.";
     } else if(cc<4){
-      msg = "İyi gidiyor! Diğer odaları da gezip daha fazla ipucu toplayın. ("+cc+"/18 ipucu)";
+      msg = "İyi gidiyor! Diğer odaları da gezip daha fazla ipucu toplayın. ("+cc+"/24 ipucu)";
     } else if(!anyDialogue){
       msg = "Yeterince ipucunuz var — sağdaki 'Şüpheliler' sekmesinden birini seçip sorgulamaya başlayın.";
     } else if(cc<MIN_CLUES_FOR_ACCUSE){
